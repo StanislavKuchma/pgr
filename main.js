@@ -735,20 +735,15 @@ containers.forEach(container => {
         scene = new THREE.Scene();
 
         const PI2 = Math.PI * 2;
-        const material = new THREE.ParticleCanvasMaterial({
-            color: 0xe1e1e1,
-            program: function(context) {
-                context.beginPath();
-                context.arc(0, 0, 0.6, 0, PI2, true);
-                context.fill();
-            }
+        const material = new THREE.SpriteMaterial({
+            color: 0xe1e1e1
         });
 
         // Створюємо частинки
         let i = 0;
         for (let ix = 0; ix < AMOUNTX; ix++) {
             for (let iy = 0; iy < AMOUNTY; iy++) {
-                const particle = particles[i++] = new THREE.Particle(material);
+                const particle = particles[i++] = new THREE.Sprite(material);
                 particle.position.x = ix * SEPARATION - ((AMOUNTX * SEPARATION) / 2);
                 particle.position.z = iy * SEPARATION - ((AMOUNTY * SEPARATION) / 2);
                 scene.add(particle);
@@ -756,7 +751,7 @@ containers.forEach(container => {
         }
 
         // Рендерер
-        renderer = new THREE.CanvasRenderer();
+        renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
         container.appendChild(renderer.domElement);
 
@@ -821,4 +816,5 @@ containers.forEach(container => {
         count += 0.1;
     }
 });
+
 
