@@ -813,7 +813,7 @@ containers.forEach(container => {
         }
 
         renderer.render(scene, camera);
-        count += 0.1;
+        count += 0.05;
     }
 });
 
